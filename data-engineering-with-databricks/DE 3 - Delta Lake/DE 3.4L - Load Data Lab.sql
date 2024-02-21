@@ -39,6 +39,12 @@
 
 -- COMMAND ----------
 
+-- MAGIC %python
+-- MAGIC kafka_events = DA.paths.kafka_events
+-- MAGIC print(kafka_events)
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-5b20c9b2-6658-4536-b79b-171d984b3b1e
 -- MAGIC %md
 -- MAGIC
@@ -72,7 +78,16 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN>
+CREATE OR REPLACE TABLE events_raw (
+  key BINARY,
+  offset BIGINT,
+  partition INT,
+  timestamp BIGINT,
+  topic STRING,
+  value BINARY
+);
+
+DESCRIBE EXTENDED events_raw;
 
 -- COMMAND ----------
 
@@ -115,7 +130,8 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN>
+INSERT INTO events_raw
+SELECT * FROM JSON.`${DA.paths.kafka_events}`
 
 -- COMMAND ----------
 
@@ -129,7 +145,7 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN>
+SELECT * FROM events_raw LIMIT 100
 
 -- COMMAND ----------
 
@@ -172,7 +188,8 @@
 -- COMMAND ----------
 
 -- TODO
-<FILL_IN> ${da.paths.datasets}/ecommerce/raw/item-lookup
+CREATE OR REPLACE TABLE item_lookup AS 
+SELECT * FROM PARQUET.`${da.paths.datasets}/ecommerce/raw/item-lookup`
 
 -- COMMAND ----------
 

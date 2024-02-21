@@ -221,6 +221,7 @@ DROP TABLE external_table;
 
 DROP SCHEMA ${da.schema_name}_default_location CASCADE;
 
+
 -- COMMAND ----------
 
 -- DBTITLE 0,--i18n-bb4a8ae9-450b-479f-9e16-a76f1131bd1a

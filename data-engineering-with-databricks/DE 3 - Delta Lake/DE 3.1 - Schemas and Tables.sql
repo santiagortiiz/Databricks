@@ -56,6 +56,15 @@ CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_default_location;
 
 -- COMMAND ----------
 
+CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_custom_location LOCATION '${da.paths.working_dir}/${da.schema_name}_custom_location.db';
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC print(DA.paths.working_dir, DA.schema_name)
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-427db4b9-fa6c-47aa-ae70-b95087298362
 -- MAGIC %md
 -- MAGIC
@@ -66,6 +75,10 @@ CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_default_location;
 -- COMMAND ----------
 
 DESCRIBE SCHEMA EXTENDED ${da.schema_name}_default_location;
+
+-- COMMAND ----------
+
+DESCRIBE SCHEMA santiago_ortiz_be24_da_delp_custom_location
 
 -- COMMAND ----------
 
@@ -114,6 +127,7 @@ DESCRIBE DETAIL managed_table;
 
 -- MAGIC %python 
 -- MAGIC tbl_location = spark.sql(f"DESCRIBE DETAIL managed_table").first().location
+-- MAGIC # tbl_location = dbfs:/user/hive/warehouse/santiago_ortiz_be24_da_delp_default_location.db/managed_table
 -- MAGIC print(tbl_location)
 -- MAGIC
 -- MAGIC files = dbutils.fs.ls(tbl_location)
