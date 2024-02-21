@@ -54,6 +54,10 @@
 
 -- COMMAND ----------
 
+DROP TABLE IF EXISTS beans
+
+-- COMMAND ----------
+
 CREATE TABLE beans 
 (name STRING, color STRING, grams FLOAT, delicious BOOLEAN);
 
@@ -385,7 +389,7 @@ SELECT * FROM beans
 
 -- COMMAND ----------
 
--- SELECT * FROM beans@v1
+SELECT * FROM beans@v1
 
 -- COMMAND ----------
 
