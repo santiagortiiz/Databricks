@@ -61,6 +61,10 @@
 
 # COMMAND ----------
 
+# MAGIC %pip install dlt
+
+# COMMAND ----------
+
 import dlt
 import pyspark.sql.functions as F
 
